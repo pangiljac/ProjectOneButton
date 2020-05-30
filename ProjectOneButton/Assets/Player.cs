@@ -9,6 +9,9 @@ public class Player : MonoBehaviour{
     public float openSpeed;
     public float closeSpeed;
     public TextMeshProUGUI textScore;
+    public GameObject resetButton;
+    public GameObject darkScreen;
+    public Spawner spawner;
 
     private bool isClosed = true;
     private bool isMaxOpen = false;
@@ -55,5 +58,23 @@ public class Player : MonoBehaviour{
     public void updateScore() {
         score += 1;
         textScore.text = "Score: " + score;
+    }
+
+    public void resetScore() {
+        score = 0;
+        textScore.text = "Score: " + score;
+    }
+
+    public void endGame() {
+        resetButton.SetActive(true);
+        darkScreen.SetActive(true);
+        spawner.endGame();
+    }
+
+    public void startGame() {
+        resetScore();
+        resetButton.SetActive(false);
+        darkScreen.SetActive(false);
+        spawner.startGame();
     }
 }

@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject unit;
     private Unit unitScript;
     private float lastTime;
+    private bool isRunning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         
-        if(Time.time - 1 > lastTime) {
+        if(Time.time - 1 > lastTime && isRunning) {
             GameObject currentUnit = Instantiate(unit);
             currentUnit.transform.position = thisTransform.position;
             unitScript = currentUnit.GetComponent<Unit>();
@@ -45,5 +46,15 @@ public class Spawner : MonoBehaviour
             unitScript.startMoving();
             lastTime = Time.time;
         }
+    }
+
+    public void startGame() {
+        isRunning = true;
+    }
+
+    public void endGame() {
+        isRunning = false;
+        lastTime = Time.time;
+       
     }
 }

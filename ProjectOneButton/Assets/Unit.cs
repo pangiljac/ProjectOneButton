@@ -54,6 +54,9 @@ public class Unit : MonoBehaviour {
                     if (unitType == UnitType.Crush) {
                         player.updateScore();
                     }
+                    else {
+                        player.endGame();
+                    }
                     Destroy(this.gameObject);
                     return;
                 }
@@ -61,6 +64,9 @@ public class Unit : MonoBehaviour {
 
             if (unitType == UnitType.Block) {
                 player.updateScore();
+            }
+            else {
+                player.endGame();
             }
             Debug.Log("Block");
             Destroy(this.gameObject);
@@ -78,6 +84,9 @@ public class Unit : MonoBehaviour {
         if (col.gameObject.name == "Checker") {
             if (unitType == UnitType.Clear) {
                 player.updateScore();
+            }
+            else {
+                player.endGame();
             }
             Debug.Log("Pass");
             Destroy(this.gameObject);
